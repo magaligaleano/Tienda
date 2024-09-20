@@ -1,0 +1,14 @@
+# Archivos de módulos de Go
+go.sum
+
+# Archivos de configuración de Air
+.air.toml
+/tmp/
+
+# Archivos de configuración locales
+.env
+
+# Archivos de IDEs o editores
+.vscode/
+# Archivos de módulos de Go
+go.sum
