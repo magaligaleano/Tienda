@@ -33,3 +33,31 @@ CREATE TABLE DetalleOrdenes (
     FOREIGN KEY (orden_id) REFERENCES Ordenes(id) ON DELETE CASCADE,
     FOREIGN KEY (producto_id) REFERENCES Productos(id)
 );
+
+endpoint: ("/orden") post
+ejemplo de json:
+
+{
+  "cliente_id": 1,
+  "fecha": "2024-09-20",
+  "total": 150.75,
+  "detalles": [
+    {
+      "producto_id": 1,
+      "cantidad": 2,
+      "precio_unitario": 50.25
+    },
+    {
+      "producto_id": 2,
+      "cantidad": 1,
+      "precio_unitario": 50.50
+    }
+  ]
+}
+
+endpoint: ("/productos/mas-vendidos")
+ejemplo de json:
+{
+    "fecha_inicio": "2024-01-01",
+    "fecha_fin": "2024-09-30"
+}
