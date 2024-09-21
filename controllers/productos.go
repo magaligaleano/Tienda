@@ -89,7 +89,7 @@ func ObtenerTotalVentasProducto(db *gorm.DB) http.HandlerFunc {
 		}
 
 		var totalVentas float64
-		err = db.Model(&models.DetalleOrden{}).Select("SUM(cantidad * precio)").Where("producto_id = ?", productoID).Scan(&totalVentas).Error
+		err = db.Model(&models.DetalleOrden{}).Select("SUM(cantidad * precio_unitario)").Where("producto_id = ?", productoID).Scan(&totalVentas).Error
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

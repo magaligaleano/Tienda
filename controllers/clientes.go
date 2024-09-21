@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"strconv"
 	"tienda-electronica/config"
 	"tienda-electronica/models"
 
@@ -81,15 +80,11 @@ func ActualizarCliente(w http.ResponseWriter, r *http.Request) {
 func ObtenerOrdenesDeCliente(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
-		clienteID, err := strconv.Atoi(vars["cliente_id"])
-		if err != nil {
-			http.Error(w, "ID de cliente inválido", http.StatusBadRequest)
-			return
-		}
+		clienteID := vars["cliente_id"]
 
 		var ordenes []models.Orden
-		if err := db.Preload("DetalleOrden.Producto").Where("cliente_id = ?", clienteID).Find(&ordenes).Error; err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+		if err := db.Preload("Detalles").Where("cliente_id = ?", clienteID).Find(&ordenes).Error; err != nil {
+			http.Error(w, "Error al obtener las órdenes", http.StatusInternalServerError)
 			return
 		}
 
