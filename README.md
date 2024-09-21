@@ -30,7 +30,7 @@ CREATE TABLE DetalleOrdenes (
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
     precio_unitario DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (orden_id) REFERENCES Ordenes(id) ON DELETE CASCADE,
+    FOREIGN KEY (orden_id) REFERENCES Ordens(id) ON DELETE CASCADE,
     FOREIGN KEY (producto_id) REFERENCES Productos(id)
 );
 
